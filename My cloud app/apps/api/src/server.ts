@@ -31,11 +31,12 @@ app.get('/health', (_req, res) => {
     name: 'My Cloud API',
     status: 'ok'
   });
+app.use('/api/v1/auth', authRouter);
 });
 app.use((_req, res) =>
   res.status(404).json({ error: 'NOT_FOUND' })
 );
-app.use('/api/v1/auth', authRouter);
+
 
 app.use((_req, res) => res.status(404).json({ error: 'NOT_FOUND' }));
 app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
