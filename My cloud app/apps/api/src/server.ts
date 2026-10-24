@@ -9,7 +9,15 @@ app.disable('x-powered-by');
 app.use(helmet());
 app.use(cors({ origin: process.env.FRONTEND_ORIGIN ?? 'http://localhost:3000', credentials: true }));
 app.use(express.json({ limit: '1mb' }));
-
+app.get('/debug/routes', (_req, res) => {
+  res.json({
+    service: 'my-cloud-api',
+    build: 'auth-route-check-1',
+    authMounted: true,
+    signupPath: '/api/v1/auth/signup',
+    loginPath: '/api/v1/auth/login'
+  });
+});
 app.get('/', (_req, res) => {
   res.json({
     name: 'My Cloud API',
