@@ -30,5 +30,10 @@
     "typescript": "^5.8.3",
     "vitest": "^3.1.2",
     "prisma": "^6.8.2"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.0.0"
   }
 }
