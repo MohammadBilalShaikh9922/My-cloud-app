@@ -24,6 +24,9 @@ app.get('/health', (_req, res) => {
     status: 'ok'
   });
 });
+app.use((_req, res) =>
+  res.status(404).json({ error: 'NOT_FOUND' })
+);
 app.use('/api/v1/auth', authRouter);
 
 app.use((_req, res) => res.status(404).json({ error: 'NOT_FOUND' }));
