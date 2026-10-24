@@ -31,6 +31,15 @@ app.get('/health', (_req, res) => {
     name: 'My Cloud API',
     status: 'ok'
   });
+app.get('/debug/auth-router', (_req, res) => {
+  res.json({
+    service: 'my-cloud-api',
+    routes: authRouter.stack.map((layer: any) => ({
+      path: layer.route?.path ?? null,
+      methods: layer.route?.methods ?? null
+    }))
+  });
+});
 app.use('/api/v1/auth', authRouter);
 });
 app.use((_req, res) =>
