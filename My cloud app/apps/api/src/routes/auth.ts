@@ -5,6 +5,13 @@ import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
 
 export const authRouter = Router();
+authRouter.get('/__debug', (_req, res) => {
+  res.json({
+    service: 'my-cloud-api',
+    authRouterLoaded: true,
+    build: 'auth-router-check-2'
+  });
+});
 const prisma = new PrismaClient();
 const signupSchema = z.object({
   email: z.string().trim().email().max(254).transform(v => v.toLowerCase()),
