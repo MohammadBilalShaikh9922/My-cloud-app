@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: mycloud
+      POSTGRES_USER: mycloud
+      POSTGRES_PASSWORD: local_dev_only_change_me
+    ports:
+      - "5432:5432"
+    volumes:
+      - mycloud_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mycloud -d mycloud"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  mycloud_pgdata:
